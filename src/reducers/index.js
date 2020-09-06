@@ -4,29 +4,12 @@ import {
   TOGGLE_DONE,
   REMOVE_TODO,
   EDIT_TODO,
-  // EDIT_TOPICK,
-  // REMOVE_TOPICK,
+  REMOVE_TOPICK,
+  EDIT_TOPICK,
 } from "../constants/actionTypes";
 
 const initialState = {
-  topicks: [
-    {
-      id: 1,
-      title: "Работа",
-      todos: [
-        {
-          id: 1,
-          text: "Сделать Amaxing Todo",
-          done: false,
-        },
-        {
-          id: 2,
-          text: "Взять task",
-          done: true,
-        },
-      ],
-    },
-  ],
+  topicks: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +24,27 @@ const reducer = (state = initialState, action) => {
             todos: [],
           },
         ],
+      };
+    }
+    case REMOVE_TOPICK: {
+      const newState = state.topicks.filter(
+        (topick) => topick.id !== action.payload
+      );
+
+      return {
+        topicks: newState,
+      };
+    }
+    case EDIT_TOPICK: {
+      const newState = state.topicks.map((topick) => {
+        if (topick.id === action.payload.topickId) {
+          topick.title = action.payload.title;
+        }
+        return topick;
+      });
+
+      return {
+        topicks: newState,
       };
     }
     case ADD_TODO: {

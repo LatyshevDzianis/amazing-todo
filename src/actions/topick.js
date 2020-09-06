@@ -11,10 +11,10 @@ export const addTopick = (data) => {
   };
 };
 
-export const editTopick = (topickId) => {
+export const editTopick = (topickId, title) => {
   return {
     type: EDIT_TOPICK,
-    payload: topickId,
+    payload: { topickId, title },
   };
 };
 
