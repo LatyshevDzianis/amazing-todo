@@ -5,33 +5,32 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import TodoList from "./TodoList";
+import TodoList from "../../TodoList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
+    minWidth: 350,
   },
 }));
 
-const TodoCard = () => {
+const TopickItemCard = ({ topick }) => {
   const classes = useStyles();
-
   return (
     <Card className={classes.root}>
       <CardHeader
-        title="Shrimp and Chorizo Paella"
+        title={topick.title}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        //subheader="September 14, 2016"
       />
       <CardContent>
-        <TodoList />
+        {console.log("Topick todos:", topick.todos)}
+        <TodoList todos={topick.todos} topickId={topick.id} />
       </CardContent>
     </Card>
   );
 };
 
-export default TodoCard;
+export default TopickItemCard;
