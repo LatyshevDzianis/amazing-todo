@@ -4,16 +4,16 @@ import { Popover, IconButton, makeStyles, TextField } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import { editTopick } from "../../../actions/topick";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   todoInput: {
     margin: "1em",
     minWidth: 290,
   },
 }));
 
-const EditTopick = ({ topickId }) => {
+const EditTopick = ({ topickId, topickTitle }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [topickInput, setTopickInput] = useState("");
+  const [topickInput, setTopickInput] = useState(topickTitle);
   const dispatch = useDispatch();
   const classes = useStyles();
   const open = Boolean(anchorEl);
@@ -33,9 +33,11 @@ const EditTopick = ({ topickId }) => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      dispatch(editTopick(topickId, topickInput.trim()));
-      setAnchorEl(null);
-      setTopickInput("");
+      if (topickInput.trim()) {
+        dispatch(editTopick(topickId, topickInput.trim()));
+        setAnchorEl(null);
+        setTopickInput("");
+      }
     }
   };
 

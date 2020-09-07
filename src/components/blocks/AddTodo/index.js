@@ -33,9 +33,11 @@ const AddTodo = ({ topickId }) => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      dispatch(addTodo(todoInput.trim(), topickId));
-      setAnchorEl(null);
-      setTodoInput("");
+      if (todoInput.trim()) {
+        dispatch(addTodo(todoInput.trim(), topickId));
+        setAnchorEl(null);
+        setTodoInput("");
+      }
     }
   };
 

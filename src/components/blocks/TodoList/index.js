@@ -1,13 +1,27 @@
 import React from "react";
+import { Droppable } from "react-beautiful-dnd";
+
 import TodoItem from "./TodoItem";
 import AddTodo from "../AddTodo";
 
-const TodoList = ({ topickId, todos }) => {
+const TodoList = ({ topickId, todos, provided }) => {
   return (
     <>
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} topickId={topickId} />
-      ))}
+      <Droppable droppableId={topickId + ""}>
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps}>
+            {todos.map((todo, index) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                topickId={topickId}
+                index={index}
+              />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
       <AddTodo topickId={topickId} />
     </>
   );

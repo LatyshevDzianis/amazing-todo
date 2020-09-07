@@ -3,12 +3,30 @@ import {
   EDIT_TODO,
   REMOVE_TODO,
   TOGGLE_DONE,
+  DRAG_TODO,
 } from "../constants/actionTypes";
 
 export const addTodo = (data, topickId) => {
   return {
     type: ADD_TODO,
     payload: { text: data, topickId: topickId },
+  };
+};
+
+export const dragTodo = (
+  todoId,
+  sourceTopickId,
+  destinationTopickId,
+  index
+) => {
+  return {
+    type: DRAG_TODO,
+    payload: {
+      todoId,
+      sourceTopickId,
+      destinationTopickId,
+      index,
+    },
   };
 };
 

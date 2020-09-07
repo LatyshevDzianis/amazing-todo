@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditTodo = ({ topickId, todoId }) => {
+const EditTodo = ({ topickId, todoId, todoText }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [todoInput, setTodoInput] = useState("");
+  const [todoInput, setTodoInput] = useState(todoText);
   const dispatch = useDispatch();
   const classes = useStyles();
   const open = Boolean(anchorEl);
@@ -34,9 +34,11 @@ const EditTodo = ({ topickId, todoId }) => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      dispatch(editTodo(topickId, todoId, todoInput.trim()));
-      setAnchorEl(null);
-      setTodoInput("");
+      if (todoInput.trim()) {
+        dispatch(editTodo(topickId, todoId, todoInput.trim()));
+        setAnchorEl(null);
+        setTodoInput("");
+      }
     }
   };
 

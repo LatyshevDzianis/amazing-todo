@@ -1,23 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
+
 import TodoList from "../../TodoList";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { removeTopick } from "../../../../actions/topick";
 import EditTopick from "../../EditTopick";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minWidth: 350,
-  },
-}));
-
 const TopickItemCard = ({ topick }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleRemoveClick = () => {
@@ -25,12 +18,12 @@ const TopickItemCard = ({ topick }) => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card>
       <CardHeader
         title={topick.title}
         action={
           <>
-            <EditTopick topickId={topick.id} />
+            <EditTopick topickId={topick.id} topickTitle={topick.title} />
             <IconButton aria-label="remove" onClick={handleRemoveClick}>
               <DeleteIcon />
             </IconButton>

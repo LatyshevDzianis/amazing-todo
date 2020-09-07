@@ -31,9 +31,11 @@ const AddTopickBtn = () => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      dispatch(addTopick(topickInput.trim()));
-      setTopickInput("");
-      setAnchorEl(null);
+      if (topickInput.trim()) {
+        dispatch(addTopick(topickInput.trim()));
+        setTopickInput("");
+        setAnchorEl(null);
+      }
     }
   };
 

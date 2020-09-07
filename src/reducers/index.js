@@ -6,6 +6,7 @@ import {
   EDIT_TODO,
   REMOVE_TOPICK,
   EDIT_TOPICK,
+  DRAG_TODO,
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -90,6 +91,30 @@ const reducer = (state = initialState, action) => {
             }
             return todo;
           });
+        }
+        return topick;
+      });
+
+      return {
+        topicks: newState,
+      };
+    }
+    case DRAG_TODO: {
+      let currentTodo = {};
+      let newState = state.topicks.map((topick) => {
+        if (topick.id === action.payload.sourceTopickId) {
+          currentTodo = topick.todos.find(
+            (todo) => todo.id === action.payload.todoId
+          );
+          topick.todos = topick.todos.filter(
+            (todo) => todo.id !== action.payload.todoId
+          );
+        }
+        return topick;
+      });
+      newState = newState.map((topick) => {
+        if (topick.id === action.payload.destinationTopickId) {
+          topick.todos.splice(action.payload.index, 0, currentTodo);
         }
         return topick;
       });
