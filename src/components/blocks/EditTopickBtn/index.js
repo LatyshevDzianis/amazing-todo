@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { Popover, IconButton, TextField } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
-import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
-import { editTodo } from "../../../actions/todo";
+import { Popover, IconButton, makeStyles, TextField } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
 
-const useStyles = makeStyles((theme) => ({
+import { editTopick } from "../../../actions/topick";
+
+const useStyles = makeStyles(() => ({
   todoInput: {
     margin: "1em",
     minWidth: 290,
   },
 }));
 
-const EditTodo = ({ topickId, todoId, todoText }) => {
+const EditTopick = ({ topickId, topickTitle }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [todoInput, setTodoInput] = useState(todoText);
+  const [topickInput, setTopickInput] = useState(topickTitle);
   const dispatch = useDispatch();
   const classes = useStyles();
   const open = Boolean(anchorEl);
@@ -29,22 +29,22 @@ const EditTodo = ({ topickId, todoId, todoText }) => {
   };
 
   const handleChange = (event) => {
-    setTodoInput(event.target.value);
+    setTopickInput(event.target.value);
   };
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      if (todoInput.trim()) {
-        dispatch(editTodo(topickId, todoId, todoInput.trim()));
+      if (topickInput.trim()) {
+        dispatch(editTopick(topickId, topickInput.trim()));
         setAnchorEl(null);
-        setTodoInput("");
+        setTopickInput("");
       }
     }
   };
 
   return (
     <>
-      <IconButton edge="end" aria-label="edit" onClick={handleClick}>
+      <IconButton aria-label="edit" onClick={handleClick}>
         <EditIcon />
       </IconButton>
       <Popover
@@ -62,12 +62,12 @@ const EditTodo = ({ topickId, todoId, todoText }) => {
         }}
       >
         <TextField
-          label="Text of todo"
+          label="Topick title"
           multiline
           id="outlined-size-small"
           variant="outlined"
           size="small"
-          value={todoInput}
+          value={topickInput}
           onChange={handleChange}
           className={classes.todoInput}
           onKeyPress={handleEnterPress}
@@ -77,4 +77,4 @@ const EditTodo = ({ topickId, todoId, todoText }) => {
   );
 };
 
-export default EditTodo;
+export default EditTopick;

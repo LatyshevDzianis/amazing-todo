@@ -2,7 +2,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 
 import TodoItem from "./TodoItem";
-import AddTodo from "../AddTodo";
+import AddTodo from "../AddTodoBtn";
 
 const TodoList = ({ topickId, todos, provided }) => {
   return (

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { TextField } from "@material-ui/core";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+import { TextField, Fab, Popover } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Popover from "@material-ui/core/Popover";
+import AddIcon from "@material-ui/icons/Add";
 import { addTopick } from "../../../actions/topick";
 
 const useStyles = makeStyles((theme) => ({

@@ -1,13 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Typography, Box } from "@material-ui/core";
-import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Paper,
+  Typography,
+  Box,
+  Checkbox,
+  IconButton,
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Draggable } from "react-beautiful-dnd";
 
-import EditTodo from "../../EditTodo";
+import EditTodo from "../../EditTodoBtn";
 import { toggleDone, removeTodo } from "../../../../actions/todo";
 
 const useStyles = makeStyles((theme) => ({
