@@ -1,12 +1,14 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Box, Grid } from "@material-ui/core";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Box, Grid } from '@material-ui/core';
 
-import TopickItemCard from "./TopickItemCard";
-import AddTopickBtn from "../AddTopickBtn";
+import TopickItemCard from './TopickItemCard';
+import AddTopickBtn from '../AddTopickBtn';
 
 const TopickList = () => {
   const topicks = useSelector((state) => state.topicks);
+
+  // FOr test purposes
 
   return (
     <Box mt={3}>
